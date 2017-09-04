@@ -22,6 +22,7 @@ import (
 )
 
 var bot *linebot.Client
+var latestReply string
 
 func main() {
 	var err error
@@ -52,7 +53,12 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("From "+message.ID+":"+message.Text+" OK!")).Do(); err != nil {
 					log.Print(err)
 				}
+				latestReply := message.Text
 			}
 		}
 	}
+}
+
+func getParamHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "latestReply: " + latestReply)
 }
