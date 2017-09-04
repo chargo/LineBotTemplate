@@ -54,7 +54,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("From "+message.ID+":"+message.Text+" OK!")).Do(); err != nil {
 					log.Print(err)
 				}
-				latestReply := message.Text
+				latestReply = message.Text
 			}
 		}
 	}
