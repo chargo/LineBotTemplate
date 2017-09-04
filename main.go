@@ -22,12 +22,11 @@ import (
 )
 
 var bot *linebot.Client
-var latestReply string
+var latestReply string = ""
 
 func main() {
 	var err error
-	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
-	latestReply := ""
+	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))	
 	log.Println("Bot:", bot, " err:", err)
 	http.HandleFunc("/callback", callbackHandler)
 	http.HandleFunc("/getState", getParamHandler)
